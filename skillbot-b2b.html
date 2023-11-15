@@ -63,8 +63,6 @@
 
 	<script type='text/javascript'>
 
-	function initEmbeddedMessaging() {
-
 		let languageCode = "fr";
 
 		let botObj = {
@@ -82,6 +80,8 @@
 		}
 
 		let thisBot = botObj[languageCode];
+
+	function initEmbeddedMessaging() {
 		
 		try {
 			embeddedservice_bootstrap.settings.language = languageCode; // For example, enter 'en' or 'en-US'
