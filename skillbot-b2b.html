@@ -61,7 +61,21 @@
     <div class="parent">
     <h1>B2B Specialized Skill Bot</h1>
 
-	    <script type='text/javascript'>
+	<script type='text/javascript'>
+
+		let botObj = {
+			"fr" : {
+				"countryCode" : "fr",
+				"esdAPIName" : "SB_SF_B2b_Skill_French",
+				"esdSiteName" : "ESWSBSFB2bSkillFrench1700065122359"
+			}
+
+			"en_US" : {
+				"countryCode" : "en",
+				"esdAPIName" : "SB_SF_B2b_Skill_English",
+				"esdSiteName" : "ESWSBSFB2bSkillEnglis1700064477511"
+			}
+		}
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'fr'; // For example, enter 'en' or 'en-US'
@@ -83,8 +97,8 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
-</script>
-<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillFrench1700065122359/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+	</script>
+	<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillFrench1700065122359/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     
 </div>
