@@ -64,17 +64,16 @@
 	<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
-			embeddedservice_bootstrap.settings.language = 'fr'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
 			window.addEventListener("onEmbeddedMessagingReady", () => {            
-			console.log( "Inside Prechat API!!" );
-			embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "SB_SF_Language_Code" : "fr", "SB_SF_Country_Code" : "fr" } );
+			embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "SB_SF_Country_Code" : "en", "SB_SF_Language_Code" : "en_US" } );
 			});
 			
 			embeddedservice_bootstrap.init(
 				'00D3I0000000o1r',
-				'SB_SF_B2b_Skill_French',
-				'https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillFrench1700065122359',
+				'SB_SF_B2b_Skill_English',
+				'https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511',
 				{
 					scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
 				}
@@ -84,7 +83,7 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillFrench1700065122359/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     
 </div>
