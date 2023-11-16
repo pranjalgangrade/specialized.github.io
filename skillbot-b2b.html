@@ -66,8 +66,13 @@
 
         <script type="text/javascript">
 
+            let botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
+            let botBootStartPath = "/assets/js/bootstrap.min.js";
+            let botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
+
             let botObj = {
-                "en_US": {
+                "en_US": {                                                      // this key is language code
                     esdAPIName: "SB_SF_B2b_Skill_English",
                     esdSiteAPIName: "ESWSBSFB2bSkillEnglis1700064477511"
                 },
@@ -77,33 +82,36 @@
                 }
             }
 
-            function callBot(countryCode, languageCode) {
+            function callBot(webTeamObj) {
 
-                let thisBot = botObj[languageCode];
+                let thisBot = botObj[webTeamObj.languageCode];
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.onload = (event) => {
-                    initEmbeddedMessaging(countryCode, languageCode, thisBot);
+                    initEmbeddedMessaging(webTeamObj, thisBot);
                 }
-                script.src = "https://specialized--msg3.sandbox.my.site.com/" + thisBot.esdSiteAPIName + "/assets/js/bootstrap.min.js";
+                script.src = botHomeURL + thisBot.esdSiteAPIName + botBootStartPath;
                 document.body.appendChild(script);
-                
+
             }
 
-            function initEmbeddedMessaging(countryCode, languageCode, thisBot) {
+            function initEmbeddedMessaging(webTeamObj, thisBot) {
 
                 try {
-                    embeddedservice_bootstrap.settings.language = languageCode; // For example, enter 'en' or 'en-US'
+                    embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
                     window.addEventListener("onEmbeddedMessagingReady", () => {
-                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({ "SB_SF_Country_Code": countryCode, "SB_SF_Language_Code": languageCode });
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                            "SB_SF_Country_Code": webTeamObj.countryCode,
+                            "SB_SF_Language_Code": webTeamObj.languageCode
+                        });
                     });
                     embeddedservice_bootstrap.init(
-                        '00D3I0000000o1r',
+                        sfOrgId,
                         thisBot.esdAPIName,
-                        'https://specialized--msg3.sandbox.my.site.com/' + thisBot.esdSiteAPIName,
+                        botHomeURL + thisBot.esdSiteAPIName,
                         {
-                            scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
+                            scrt2URL: botScrtURL
                         }
                     );
                 } catch (err) {
@@ -113,7 +121,13 @@
 
             window.onload = (event) => {
                 console.log("page is fully loaded");
-                callBot("fr","fr");
+                let webTeamObj = {
+                    languageCode : "fr",
+                    countryCode : "fr",
+                    userName : "",
+                    userId : ""
+                }
+                callBot(webTeamObj);                   // this function to be called by webteam
             };
         </script>
 
