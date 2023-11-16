@@ -61,6 +61,32 @@
     <div class="parent">
     <h1>B2B Specialized Skill Bot</h1>
 
+	    <div onload='getBotValues("en_US","en")'></div>
+
+	    <script type='text/javascript'>
+		function getBotValues(languageCode, countryCode) {
+
+		console.log("getBotValues languageCode ",languageCode);
+		console.log("getBotValues countryCode ",countryCode);
+
+		let botObj = {
+				"fr" : {
+				"esdAPIName" : "SB_SF_B2b_Skill_French",
+				"esdSiteName" : "ESWSBSFB2bSkillFrench1700065122359"
+				},
+
+				"en_US" : {
+				"esdAPIName" : "SB_SF_B2b_Skill_English",
+				"esdSiteName" : "ESWSBSFB2bSkillEnglis1700064477511"
+				}
+			}
+
+		let thisBot = botObj[languageCode];
+		var bootStrapSiteName = 'https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js'
+			console.log("bootStrapSiteName ",bootStrapSiteName)
+		};
+	    </script>
+
 	<script type='text/javascript'>
 
 	function initEmbeddedMessaging(languageCode, countryCode) {
