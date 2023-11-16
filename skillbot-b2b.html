@@ -82,7 +82,7 @@
                 let thisBot = botObj[languageCode];
 
                 var script = document.createElement('script');
-                script.type = 'application/javascript';
+                script.type = 'text/javascript';
                 script.src = "https://specialized--msg3.sandbox.my.site.com/" + thisBot.esdSiteAPIName + "/assets/js/bootstrap.min.js";
                 document.head.appendChild(script);
                 initEmbeddedMessaging(countryCode, languageCode, thisBot);
