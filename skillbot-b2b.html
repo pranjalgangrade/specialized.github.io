@@ -62,14 +62,31 @@
     <h1>B2B Specialized Skill Bot</h1>
 
 	    <script type='text/javascript'>
-	function initEmbeddedMessaging() {
+
+		function initEmbeddedMessaging(countryCode, languageCode) {
+
+			let botObj ={
+			    "en_US" : {
+				esdAPIName : "SB_SF_B2b_Skill_English",
+				esdSiteAPIName : "ESWSBSFB2bSkillEnglis1700064477511"
+			    },
+			    "fr" : {
+				esdAPIName : "SERVICESB_SF_B2B_SKILL_FRENCH",
+				esdSiteAPIName : "ESWSBSFB2bSkillFrench1700065122359"
+			    }
+		    }
+
+		    let thisBot = botObj[languageCode]
+			
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
+			window.addEventListener("onEmbeddedMessagingReady", () => {            
+			embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "SB_SF_Country_Code" : countryCode, "SB_SF_Language_Code" : languageCode } );
+			});
 			embeddedservice_bootstrap.init(
 				'00D3I0000000o1r',
-				'SB_SF_B2b_Skill_English',
-				'https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511',
+				thisBot.esdAPIName,
+				'https://specialized--msg3.sandbox.my.site.com/'+thisBot.esdSiteAPIName,
 				{
 					scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
 				}
@@ -79,7 +96,7 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging("en","en_US")'></script>
 
     
 </div>
