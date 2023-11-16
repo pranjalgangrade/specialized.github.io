@@ -1,14 +1,16 @@
 <html>
+
 <head>
     <title> B2B Specialized Skill Bot</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <style>
-        *{
+        * {
             font-family: 'Roboto', sans-serif;
         }
+
         .style1 {
             margin: 0 0.5rem;
             display: inline-block;
@@ -57,51 +59,58 @@
         }
     </style>
 </head>
+
 <body>
     <div class="parent">
-    <h1>B2B Specialized Skill Bot</h1>
+        <h1>B2B Specialized Skill Bot</h1>
 
-	    <script type='text/javascript'>
+        <script type="text/javascript">
 
-		function initEmbeddedMessaging(countryCode, languageCode) {
+            let botObj = {
+                "en_US": {
+                    esdAPIName: "SB_SF_B2b_Skill_English",
+                    esdSiteAPIName: "ESWSBSFB2bSkillEnglis1700064477511"
+                },
+                "fr": {
+                    esdAPIName: "SB_SF_B2B_SKILL_FRENCH",
+                    esdSiteAPIName: "ESWSBSFB2bSkillFrench1700065122359"
+                }
+            }
 
-			let botObj ={
-			    "en_US" : {
-				esdAPIName : "SB_SF_B2b_Skill_English",
-				esdSiteAPIName : "ESWSBSFB2bSkillEnglis1700064477511"
-			    },
-			    "fr" : {
-				esdAPIName : "SB_SF_B2B_SKILL_FRENCH",
-				esdSiteAPIName : "ESWSBSFB2bSkillFrench1700065122359"
-			    }
-		    }
+            function callBot(countryCode, languageCode) {
 
-		    let thisBot = botObj[languageCode]
-			console.log('thisBot', thisBot)
-			
-		try {
-			embeddedservice_bootstrap.settings.language = languageCode; // For example, enter 'en' or 'en-US'
-			window.addEventListener("onEmbeddedMessagingReady", () => {            
-			embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "SB_SF_Country_Code" : countryCode, "SB_SF_Language_Code" : languageCode } );
-			});
-			embeddedservice_bootstrap.init(
-				'00D3I0000000o1r',
-				thisBot.esdAPIName,
-				'https://specialized--msg3.sandbox.my.site.com/'+thisBot.esdSiteAPIName,
-				{
-					scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillFrench1700065122359/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging("fr","fr")'></script>
+                let thisBot = botObj[languageCode];
 
-    
-</div>
+                var script = document.createElement('script');
+                script.type = 'application/javascript';
+                script.src = "https://specialized--msg3.sandbox.my.site.com/" + thisBot.esdSiteAPIName + "/assets/js/bootstrap.min.js";
+                document.head.appendChild(script);
+                initEmbeddedMessaging(countryCode, languageCode, thisBot);
+            }
+
+            function initEmbeddedMessaging(countryCode, languageCode, thisBot) {
+
+                try {
+                    embeddedservice_bootstrap.settings.language = languageCode; // For example, enter 'en' or 'en-US'
+                    window.addEventListener("onEmbeddedMessagingReady", () => {
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({ "SB_SF_Country_Code": countryCode, "SB_SF_Language_Code": languageCode });
+                    });
+                    embeddedservice_bootstrap.init(
+                        '00D3I0000000o1r',
+                        thisBot.esdAPIName,
+                        'https://specialized--msg3.sandbox.my.site.com/' + thisBot.esdSiteAPIName,
+                        {
+                            scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
+                        }
+                    );
+                } catch (err) {
+                    console.error('Error loading Embedded Messaging: ', err);
+                }
+            };
+        </script>
+
+
+    </div>
 </body>
 
 </html>
-
