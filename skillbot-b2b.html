@@ -107,6 +107,11 @@
                     console.error('Error loading Embedded Messaging: ', err);
                 }
             };
+
+            window.onload = (event) => {
+                console.log("page is fully loaded");
+                callBot("fr","fr");
+            };
         </script>
 
 
