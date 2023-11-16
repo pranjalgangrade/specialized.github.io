@@ -55,6 +55,56 @@
         .child {
             display: flex;
         }
+
+    /* Styling required */
+
+      .hide {
+        display: none;
+      }
+
+      .spinner {
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        box-shadow: 20px 0px 0 0 rgba(0, 0, 0, 0.2), 16.2px 11.8px 0 0 rgba(0, 0, 0, 0.4), 6.2px 19px 0 0 rgba(0, 0, 0, 0.6), -6.2px 19px 0 0 rgba(0, 0, 0, 0.8), -16.2px 11.8px 0 0 #000000;
+        animation: spinner-b87k6z 1s infinite linear;
+      }
+
+      @keyframes spinner-b87k6z {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .chatBtn-left {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        position: fixed;
+        bottom: 1.6rem;
+        left: 1.9rem;
+        overflow: hidden;
+        pointer-events: all;
+      }
+
+      .chatBtn-right {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        position: fixed;
+        bottom: 1.6rem;
+        right: 1.9rem;
+        overflow: hidden;
+        pointer-events: all;
+      }
+      .spinner-left {
+        position: fixed;left: 6.2rem;bottom: 2.8rem;
+      }
+      .spinner-right {
+        position: fixed;right: 6.2rem;bottom: 2.8rem;
+      }
     </style>
 </head>
 <body>
@@ -65,6 +115,28 @@
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+              console.log("Received the onEmbeddedMessagingReady event…");
+              let btnState =
+                document.querySelector("#launchChatButton").disabled;
+              if (btnState) {
+                //Open
+                window.setTimeout(() => {
+                  //Timeout added to check the state of existing messaging session.
+                  let chatWindow = document.querySelector(
+                    '[title="Chat with an Agent"]'
+                  );
+                  console.log({ chatWindow });
+                  if (!chatWindow) {
+                    // Chat window is not maximized
+                    enableLaunchChatButton();
+                  }
+                  disableSpinner();
+                }, 1000);
+              }
+
+            });
 
 			embeddedservice_bootstrap.init(
 				'00D3I0000001MD8',
@@ -80,6 +152,55 @@
 	};
 </script>
 <script type='text/javascript' src='https://specialized--msg4.sandbox.my.site.com/ESWSBSFMenuBotB2BUS1699954595408/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script>
+    function handleBtn() {
+      console.log("Button clicked");
+      disableLaunchChatButton();
+      enableSpinner();
+      embeddedservice_bootstrap.utilAPI
+        .launchChat()
+        .then(() => {
+          // Success handler used to perform actions
+          // when the chat client launches successfully.
+          // For example, create a method that disables the launch chat button.
+          console.log("then called");
+          disableSpinner();
+        })
+        .catch(() => {
+          // Error handler used to perform actions
+          // if the chat client fails to launch.
+          // For example, create a method that hides the launch chat button.
+          // hideLaunchChatButton();
+          console.error("Error catch");
+          enableLaunchChatButton();
+        })
+        .finally(() => {
+          // Finally handler used to perform any clean-up actions
+          // regardless of whether the chat client launches successfully or not.
+          // For example, create a method that logs the user’s attempt to chat.
+          // logEndUserAttemptToChat();
+          console.log("Finally");
+        });
+    }
+    function disableLaunchChatButton() {
+      let btn = document.querySelector("#launchChatButton");
+      btn.disabled = true;
+      btn.classList.add("hide");
+    }
+    function enableLaunchChatButton() {
+      let btn = document.querySelector("#launchChatButton");
+      btn.disabled = false;
+      btn.classList.remove("hide");
+    }
+    function disableSpinner() {
+      let btn = document.querySelector("#spinner");
+      btn.classList.add("hide");
+    }
+    function enableSpinner() {
+      let btn = document.querySelector("#spinner");
+      btn.classList.remove("hide");
+    }
+  </script>
 </div>
 </body>
 
