@@ -77,9 +77,10 @@
 		    }
 
 		    let thisBot = botObj[languageCode]
+			console.log('thisBot', thisBot)
 			
 		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.settings.language = languageCode; // For example, enter 'en' or 'en-US'
 			window.addEventListener("onEmbeddedMessagingReady", () => {            
 			embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "SB_SF_Country_Code" : countryCode, "SB_SF_Language_Code" : languageCode } );
 			});
@@ -96,7 +97,7 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging("en","en_US")'></script>
+<script type='text/javascript' src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFB2bSkillEnglis1700064477511/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging("fr","fr")'></script>
 
     
 </div>
