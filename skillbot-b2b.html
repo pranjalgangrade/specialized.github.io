@@ -83,9 +83,12 @@
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
+                script.onload = (event) => {
+                    initEmbeddedMessaging(countryCode, languageCode, thisBot);
+                }
                 script.src = "https://specialized--msg3.sandbox.my.site.com/" + thisBot.esdSiteAPIName + "/assets/js/bootstrap.min.js";
                 document.body.appendChild(script);
-                initEmbeddedMessaging(countryCode, languageCode, thisBot);
+                
             }
 
             function initEmbeddedMessaging(countryCode, languageCode, thisBot) {
