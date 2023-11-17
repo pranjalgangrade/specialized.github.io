@@ -84,7 +84,7 @@
 
             function callBot(webTeamObj) {
 
-                console.log('callBot ',webTeamObj);
+                console.log('callBot ', webTeamObj);
 
                 let thisBot = botObj[webTeamObj.languageCode];
 
@@ -100,7 +100,7 @@
 
             function initEmbeddedMessaging(webTeamObj, thisBot) {
 
-                console.log('initEmbeddedMessaging ',webTeamObj);
+                console.log('initEmbeddedMessaging ', webTeamObj);
 
                 try {
                     embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
@@ -123,15 +123,21 @@
                 }
             };
 
+            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", () => {
+                
+                console.log("Received the onEmbeddedMessagingIdentityTokenExpired event…");
+
+            });
+
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode : "fr",
-                    countryCode : "fr",
-                    userName : "",
-                    userId : ""
+                    languageCode: "fr",
+                    countryCode: "fr",
+                    userName: "",
+                    userId: ""
                 }
-                console.log('onload ',webTeamObj);
+                console.log('onload ', webTeamObj);
                 callBot(webTeamObj);                   // this function to be called by webteam
             };
         </script>
