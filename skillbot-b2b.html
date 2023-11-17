@@ -84,6 +84,8 @@
 
             function callBot(webTeamObj) {
 
+                console.log('callBot ',webTeamObj);
+
                 let thisBot = botObj[webTeamObj.languageCode];
 
                 var script = document.createElement('script');
@@ -97,6 +99,8 @@
             }
 
             function initEmbeddedMessaging(webTeamObj, thisBot) {
+
+                console.log('initEmbeddedMessaging ',webTeamObj);
 
                 try {
                     embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
@@ -122,11 +126,12 @@
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode : "en_US",
-                    countryCode : "en",
+                    languageCode : "fr",
+                    countryCode : "fr",
                     userName : "",
                     userId : ""
                 }
+                consol.log('onload ',webTeamObj);
                 callBot(webTeamObj);                   // this function to be called by webteam
             };
         </script>
