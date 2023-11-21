@@ -154,6 +154,11 @@
           window.addEventListener("onEmbeddedMessagingReady", () => {
 
             console.log("Received the onEmbeddedMessagingReady event…");
+
+            embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+              "SB_SF_Webpage_URL": "https://specialized.com/"
+            });
+            
             let btnState =
               document.querySelector("#launchChatButton").disabled;
             if (btnState) {
@@ -171,10 +176,6 @@
                 disableSpinner();
               }, 1000);
             }
-
-            embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "SB_SF_Webpage_URL" : "https://specialized.com/"
-                        });
           });
 
           embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
