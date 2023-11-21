@@ -159,7 +159,7 @@
               "SB_SF_Webpage_URL": "https://specialized.com/"
             });
 
-            console.log('mapped hidden vals');
+            console.log('before btn call ',embeddedservice_bootstrap);
 
             let btnState =
               document.querySelector("#launchChatButton").disabled;
@@ -178,6 +178,7 @@
                 disableSpinner();
               }, 1000);
             }
+
           });
 
           embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
@@ -210,7 +211,7 @@
             // Success handler used to perform actions
             // when the chat client launches successfully.
             // For example, create a method that disables the launch chat button.
-            console.log("then called");
+            console.log('at then ',embeddedservice_bootstrap);
             disableSpinner();
           })
           .catch(() => {
