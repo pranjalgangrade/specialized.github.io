@@ -147,19 +147,54 @@
         <div class="spinner spinner-right hide" id="spinner"></div>
         <!-- Spinner -->
         <script type="text/javascript">
+
+            let botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
+            let botBootStartPath = "/assets/js/bootstrap.min.js";
+            let botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
+            var globalBotObj;
+
+            let botObj = {
+                "en_US": {                                                      // this key is language code
+                    esdAPIName: "SB_SF_S_COM_INTENT_ENGLISH_US",
+                    esdSiteAPIName: "ESW_SB_SF_S_Com_Intent_Eng_17006407428371"
+                },
+                "en_gb": {
+                    esdAPIName: "SERVICESB_SF_S_COM_INTENT_ENGLISH_UK",
+                    esdSiteAPIName: "ESW_SB_SF_S_Com_Intent_Eng_17006411215811"
+                }
+            }
+
+            function callBot(webTeamObj) {
+
+                let thisBot = botObj[webTeamObj.languageCode];
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.onload = (event) => {
+                    initEmbeddedMessaging(webTeamObj, thisBot);
+                }
+                script.src = botHomeURL + thisBot.esdSiteAPIName + botBootStartPath;
+                document.body.appendChild(script);
+
+            }
+
             function initEmbeddedMessaging() {
                 try {
-                    embeddedservice_bootstrap.settings.language = "en_US"; // For example, enter 'en' or 'en-US'
+
+                    globalBotObj = {...webTeamObj}
+
+                    embeddedservice_bootstrap.settings.language = globalBotObj.languageCode; // For example, enter 'en' or 'en_US'
 
                     window.addEventListener("onEmbeddedMessagingReady", () => {
 
-                        console.log("Received the onEmbeddedMessagingReady event…");
-
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "SB_SF_Webpage_URL": window.location.href
+                            "SB_SF_Country_Code": globalBotObj.countryCode,
+                            "SB_SF_Language_Code": globalBotObj.languageCode,
+                            "SB_SF_Customer_Number" : globalBotObj.userId,
+                            "SB_SF_User_Name" : globalBotObj.userName,
+                            "SB_SF_Webpage_URL" : globalBotObj.pageURL
                         });
-
-                        console.log('before btn call ', embeddedservice_bootstrap);
 
                         let btnState =
                             document.querySelector("#launchChatButton").disabled;
@@ -183,24 +218,32 @@
 
                     embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
 
-                    embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
                     embeddedservice_bootstrap.init(
-                        '00D3I0000000o1r',
-                        'SB_SF_S_Com_Intent_English_US',
-                        'https://specialized--msg3.sandbox.my.site.com/ESWSBSFSComIntentEng1700640742837',
+                        sfOrgId,
+                        thisBot.esdAPIName,
+                        botHomeURL + thisBot.esdSiteAPIName,
                         {
-                            scrt2URL: 'https://specialized--msg3.sandbox.my.salesforce-scrt.com'
+                            scrt2URL: botScrtURL
                         }
                     );
                 } catch (err) {
                     console.error("Error loading Embedded Messaging: ", err);
                 }
             }
+
+            window.onload = (event) => {
+                console.log("page is fully loaded");
+                let webTeamObj = {
+                    languageCode: "en_US",
+                    countryCode: "en",
+                    pageURL: window.location.href
+                }
+                console.log('onload ', webTeamObj);
+                callBot(webTeamObj);                   // this function to be called by webteam
+            };
+
         </script>
-        <script type='text/javascript'
-            src='https://specialized--msg3.sandbox.my.site.com/ESWSBSFSComIntentEng1700640742837/assets/js/bootstrap.min.js'
-            onload='initEmbeddedMessaging()'></script>
+
         <script>
             function handleBtn() {
                 console.log("Button clicked");
