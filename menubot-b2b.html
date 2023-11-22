@@ -65,6 +65,9 @@
         <h1>B2B Specialized Menu Bot</h1>
 
         <script type='text/javascript'>
+
+            let pageURL = window.location.href;
+
             function initEmbeddedMessaging() {
                 try {
                     embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -73,7 +76,7 @@
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
                             "SB_SF_Customer_Number": "Test123",
                             "user_name": "testuser@test.com",
-                            "SB_SF_Webpage_URL" : "https://specialized.com/"
+                            "SB_SF_Webpage_URL" : pageURL
                         });
                     });
 
