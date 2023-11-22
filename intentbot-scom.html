@@ -156,7 +156,7 @@
             console.log("Received the onEmbeddedMessagingReady event…");
 
             embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-              "SB_SF_Webpage_URL": "https://specialized.com/"
+              "SB_SF_Webpage_URL": window.location.href
             });
 
             console.log('before btn call ',embeddedservice_bootstrap);
