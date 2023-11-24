@@ -175,6 +175,13 @@
             embeddedservice_bootstrap.settings.language = "en_US"; // For example, enter 'en' or 'en-US'
 
             window.addEventListener("onEmbeddedMessagingReady", () => {
+
+              embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                            "SB_SF_Language_Code": "en_US",
+                            "SB_SF_Country_Code": "en",
+                            "SB_SF_Webpage_URL" : window.location.href
+              });
+
               console.log("Received the onEmbeddedMessagingReady event…");
               let btnState =
                 document.querySelector("#launchChatButton").disabled;
@@ -199,8 +206,8 @@
 
             embeddedservice_bootstrap.init(
               "00D3I0000001MD8",
-              "SB_SF_Menu_Bot_B2B_US_Github",
-              "https://specialized--msg4.sandbox.my.site.com/ESWSBSFMenuBotB2BUS1699954595408",
+              "SB_SF_S_COM_MENU_US",
+              "https://specialized--msg4.sandbox.my.site.com/ESWSBSFSComMenuUS1700799059240",
               {
                 scrt2URL:
                   "https://specialized--msg4.sandbox.my.salesforce-scrt.com",
@@ -213,7 +220,7 @@
       </script>
       <script
         type="text/javascript"
-        src="https://specialized--msg4.sandbox.my.site.com/ESWSBSFMenuBotB2BUS1699954595408/assets/js/bootstrap.min.js"
+        src="https://specialized--msg4.sandbox.my.site.com/ESWSBSFSComMenuUS1700799059240/assets/js/bootstrap.min.js"
         onload="initEmbeddedMessaging()"
       ></script>
       <script>
