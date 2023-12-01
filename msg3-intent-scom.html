@@ -148,16 +148,16 @@
         <!-- Spinner -->
         <script type="text/javascript">
 
-            let botHomeURL = "https://specialized--msg4.sandbox.my.site.com/";   // experience site domain
+            let botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
             let botBootStartPath = "/assets/js/bootstrap.min.js";
-            let botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
-            let sfOrgId = "00D3I0000001MD8";    // salesforce instance id
+            let botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
             var globalBotObj;
 
             let botObj = {
                 "en_US": {                                                      // this key is language code
                     esdAPIName: "SB_SF_S_Com_Intent_English_US",
-                    esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+                    esdSiteAPIName: "ESWSBSFSComIntentEng1700640742837"
                 },
                 "en_GB": {
                     esdAPIName: "SB_SF_S_Com_Intent_English_UK",
@@ -235,8 +235,8 @@
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode: "en_GB",
-                    countryCode: "uk",
+                    languageCode: "en_US",
+                    countryCode: "us",
                     pageURL: window.location.href
                 }
                 console.log('onload ', webTeamObj);
