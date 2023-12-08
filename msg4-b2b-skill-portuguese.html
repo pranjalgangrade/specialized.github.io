@@ -247,11 +247,23 @@
                 }
             }
 
+            let webLanguageCode = {
+              "en-US" : "en_US",
+              "en-GB" : "en_GB",
+              "en-AU" : "en_AU",
+              "es-ES" : "es",
+              "pt-PT" : "pt_PT",
+              "it-IT" : "it",
+              "de-DE" : "de",
+              "nl-NL" : "nl_NL",
+              "fr-FR" : "fr"
+            }
+
             function callBot(webTeamObj) {
 
                 console.log('callBot ', webTeamObj);
 
-                let thisBot = botObj[webTeamObj.languageCode];
+                webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -328,7 +340,7 @@
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode: "pt_PT",
+                    languageCode: "pt-PT",
                     countryCode: "pt",
                     userName: "test@testuser.com",
                     userId: "test123",
