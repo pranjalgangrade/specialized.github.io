@@ -194,9 +194,20 @@
                 }
             }
 
+            let webLanguageCode = {
+              "en-US" : "en_US"
+            }
+
+            let webCountryCode = {
+              "US" : "US"
+            }
+
             function callBot(webTeamObj) {
 
                 console.log('callBot ', webTeamObj);
+
+                webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode];
+                webTeamObj.countryCode = webCountryCode[webTeamObj.countryCode];
 
                 let thisBot = botObj[webTeamObj.languageCode];
 
@@ -276,7 +287,7 @@
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode: "en_US",
+                    languageCode: "en-US",
                     countryCode: "us",
                     userName: "test@testuser.com",
                     userId: "test123",
