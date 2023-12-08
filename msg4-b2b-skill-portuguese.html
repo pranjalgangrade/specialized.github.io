@@ -265,6 +265,8 @@
 
                 webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
+                let thisBot = botObj[webTeamObj.languageCode];
+
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.onload = (event) => {
