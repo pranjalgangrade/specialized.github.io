@@ -195,24 +195,22 @@
             }
 
             let webLanguageCode = {
-              "en-US" : "en_US"
-            }
-
-            let webCountryCode = {
-              "US" : "US"
+              "en-US" : "en_US",
+              "en-GB" : "en_GB",
+              "en-AU" : "en_AU",
+              "es-ES" : "es",
+              "pt-PT" : "pt_PT",
+              "it-IT" : "it",
+              "de-DE" : "de",
+              "nl-NL" : "nl_NL",
+              "fr-FR" : "fr"
             }
 
             function callBot(webTeamObj) {
 
                 console.log('callBot ', webTeamObj);
 
-                webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode];
-                webTeamObj.countryCode = webCountryCode[webTeamObj.countryCode];
-
-                console.log('webTeamObj.languageCode ',webTeamObj.languageCode);
-                console.log('webTeamObj.countryCode ',webTeamObj.countryCode);
-                console.log('Unknown lang ',webLanguageCode["temp"]);
-                console.log('Unknown lang ',webLanguageCode["temp"] ? "true" : "en_US");
+                webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
                 let thisBot = botObj[webTeamObj.languageCode];
 
