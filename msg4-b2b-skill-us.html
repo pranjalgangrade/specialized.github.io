@@ -173,13 +173,13 @@
     <!-- Spinner -->
         <script type="text/javascript">
 
-            let botHomeURL = "https://specialized--msg4.sandbox.my.site.com/";   // experience site domain
-            let botBootStartPath = "/assets/js/bootstrap.min.js";
-            let botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
-            let sfOrgId = "00D3I0000001MD8";    // salesforce instance id
+            var botHomeURL = "https://specialized--msg4.sandbox.my.site.com/";   // experience site domain
+            var botBootStartPath = "/assets/js/bootstrap.min.js";
+            var botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            var sfOrgId = "00D3I0000001MD8";    // salesforce instance id
             var globalBotObj;
 
-            let botObj = {
+            var botObj = {
                 "en_US": {                                                      // this key is language code
                     esdAPIName: "SB_SF_B2b_Skill_English",
                     esdSiteAPIName: "ESWSBSFB2bSkillEnglis1700136678702"
@@ -194,7 +194,7 @@
                 }
             }
 
-            let webLanguageCode = {
+            var webLanguageCode = {
               "en-US" : "en_US",
               "en-GB" : "en_GB",
               "en-AU" : "en_AU",
@@ -212,7 +212,7 @@
 
                 webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
-                let thisBot = botObj[webTeamObj.languageCode];
+                var thisBot = botObj[webTeamObj.languageCode];
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -231,19 +231,19 @@
                 try {
                     globalBotObj = {...webTeamObj}
                     embeddedservice_bootstrap.settings.language = globalBotObj.languageCode; // For example, enter 'en' or 'en_US'
-                    window.addEventListener("onEmbeddedMessagingReady", () => {
+                    window.addEventListener("onEmbeddedMessagingReady", function(){
 
 
 
                         
                         console.log("Received the onEmbeddedMessagingReady event…");
-                        let btnState =
+                        var btnState =
                             document.querySelector("#launchChatButton").disabled;
                         if (btnState) {
                             //Open
-                            window.setTimeout(() => {
+                            window.setTimeout(function() {
                             //Timeout added to check the state of existing messaging session.
-                            let chatWindow = document.querySelector(
+                            var chatWindow = document.querySelector(
                                 '[title="Chat with an Agent"]'
                             );
                             console.log({ chatWindow });
@@ -281,7 +281,7 @@
                 }
             };
 
-            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", () => {
+            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", function() {
                 
                 console.log("Received the onEmbeddedMessagingIdentityTokenExpired event…");
 
@@ -289,7 +289,7 @@
 
             window.onload = (event) => {
                 console.log("page is fully loaded");
-                let webTeamObj = {
+                var webTeamObj = {
                     languageCode: "en-US",
                     countryCode: "us",
                     userName: "test@testuser.com",
@@ -331,21 +331,21 @@
                 });
             }
             function disableLaunchChatButton() {
-              let btn = document.querySelector("#launchChatButton");
+              var btn = document.querySelector("#launchChatButton");
               btn.disabled = true;
               btn.classList.add("hide");
             }
             function enableLaunchChatButton() {
-              let btn = document.querySelector("#launchChatButton");
+              var btn = document.querySelector("#launchChatButton");
               btn.disabled = false;
               btn.classList.remove("hide");
             }
             function disableSpinner() {
-              let btn = document.querySelector("#spinner");
+              var btn = document.querySelector("#spinner");
               btn.classList.add("hide");
             }
             function enableSpinner() {
-              let btn = document.querySelector("#spinner");
+              var btn = document.querySelector("#spinner");
               btn.classList.remove("hide");
             }
           </script>
