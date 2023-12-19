@@ -177,7 +177,6 @@
             let botBootStartPath = "/assets/js/bootstrap.min.js";
             let botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
             let sfOrgId = "00D3I0000001MD8";    // salesforce instance id
-            var globalBotObj;
 
             let botObj = {
                 "en_US": {                                                      // this key is language code
@@ -234,8 +233,8 @@
                 console.log('initEmbeddedMessaging ', webTeamObj);
 
                 try {
-                    globalBotObj = {...webTeamObj}
-                    embeddedservice_bootstrap.settings.language = "en_US"; // For example, enter 'en' or 'en_US'
+
+                    embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
                     window.addEventListener("onEmbeddedMessagingReady", () => {
 
 
@@ -262,11 +261,11 @@
 
                         
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "SB_SF_Country_Code": globalBotObj.countryCode,
-                            "SB_SF_Language_Code": globalBotObj.languageCode,
-                            "SB_SF_Customer_Number" : globalBotObj.userId,
-                            "SB_SF_User_Name" : globalBotObj.userName,
-                            "SB_SF_Webpage_URL" : globalBotObj.pageURL
+                            "SB_SF_Country_Code": webTeamObj.countryCode,
+                            "SB_SF_Language_Code": webTeamObj.languageCode,
+                            "SB_SF_Customer_Number" : webTeamObj.userId,
+                            "SB_SF_User_Name" : webTeamObj.userName,
+                            "SB_SF_Webpage_URL" : webTeamObj.pageURL
                         });
                     });
 
