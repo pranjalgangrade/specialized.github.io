@@ -184,6 +184,8 @@
 
             function callBot(webTeamObj) {
 
+                console.log('lang ',webLanguageCode[webTeamObj.languageCode]);
+
                 webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
                 let thisBot = botObj[webTeamObj.languageCode];
