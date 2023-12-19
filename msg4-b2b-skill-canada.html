@@ -173,12 +173,13 @@
     <!-- Spinner -->
         <script type="text/javascript">
 
-            let botHomeURL = "https://specialized--msg4.sandbox.my.site.com/";   // experience site domain
+            let botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
             let botBootStartPath = "/assets/js/bootstrap.min.js";
-            let botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
-            let sfOrgId = "00D3I0000001MD8";    // salesforce instance id
-
-            let botObj = {
+            let botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
+            var globalBotObj;   // salesforce instance id
+            
+            var botObj = {
                 "en_US": {                                                      // this key is language code
                     esdAPIName: "SB_SF_B2b_Skill_English",
                     esdSiteAPIName: "ESWSBSFB2bSkillEnglis1702958462872"
@@ -186,18 +187,10 @@
                 "en_CA": {                                                      // this key is language code
                     esdAPIName: "SB_SF_B2b_Skill_English",
                     esdSiteAPIName: "ESWSBSFB2bSkillEnglis1702958462872"
-                },
-                "fr": {
-                    esdAPIName: "SB_SF_B2B_SKILL_FRENCH",
-                    esdSiteAPIName: "ESWSBSFB2bSkillFrench1700136854474"
-                },
-                "de": {
-                    esdAPIName: "SB_SF_B2B_SKILL_GERMAN",
-                    esdSiteAPIName: "ESWSBSFB2bSkillGerman1700726166020"
                 }
             }
 
-            let webLanguageCode = {
+            var webLanguageCode = {
               "en-US" : "en_US",
               "en-GB" : "en_GB",
               "en-AU" : "en_AU",
@@ -216,7 +209,7 @@
 
                 webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
-                let thisBot = botObj[webTeamObj.languageCode];
+                var thisBot = botObj[webTeamObj.languageCode];
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -235,19 +228,19 @@
                 try {
 
                     embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
-                    window.addEventListener("onEmbeddedMessagingReady", () => {
+                    window.addEventListener("onEmbeddedMessagingReady", function(){
 
 
 
                         
                         console.log("Received the onEmbeddedMessagingReady event…");
-                        let btnState =
+                        var btnState =
                             document.querySelector("#launchChatButton").disabled;
                         if (btnState) {
                             //Open
-                            window.setTimeout(() => {
+                            window.setTimeout(function() {
                             //Timeout added to check the state of existing messaging session.
-                            let chatWindow = document.querySelector(
+                            var chatWindow = document.querySelector(
                                 '[title="Chat with an Agent"]'
                             );
                             console.log({ chatWindow });
@@ -272,7 +265,6 @@
                     embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
                     // embeddedservice_bootstrap.settings.hideChatButtonOnLoad = false; //Shows the chat icon on load.
 
-                    
                     embeddedservice_bootstrap.init(
                         sfOrgId,
                         thisBot.esdAPIName,
@@ -286,7 +278,7 @@
                 }
             };
 
-            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", () => {
+            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", function() {
                 
                 console.log("Received the onEmbeddedMessagingIdentityTokenExpired event…");
 
@@ -294,7 +286,7 @@
 
             window.onload = (event) => {
                 console.log("page is fully loaded");
-                let webTeamObj = {
+                var webTeamObj = {
                     languageCode: "en-CA",
                     countryCode: "CA",
                     userName: "test@testuser.com",
@@ -305,56 +297,55 @@
                 callBot(webTeamObj);                   // this function to be called by webteam
             };
         </script>
-
-<script>
-    function handleBtn() {
-      console.log("Button clicked");
-      disableLaunchChatButton();
-      enableSpinner();
-      embeddedservice_bootstrap.utilAPI
-        .launchChat()
-        .then(() => {
-          // Success handler used to perform actions
-          // when the chat client launches successfully.
-          // For example, create a method that disables the launch chat button.
-          console.log("then called");
-          disableSpinner();
-        })
-        .catch(() => {
-          // Error handler used to perform actions
-          // if the chat client fails to launch.
-          // For example, create a method that hides the launch chat button.
-          // hideLaunchChatButton();
-          console.error("Error catch");
-          enableLaunchChatButton();
-        })
-        .finally(() => {
-          // Finally handler used to perform any clean-up actions
-          // regardless of whether the chat client launches successfully or not.
-          // For example, create a method that logs the user’s attempt to chat.
-          // logEndUserAttemptToChat();
-          console.log("Finally");
-        });
-    }
-    function disableLaunchChatButton() {
-      let btn = document.querySelector("#launchChatButton");
-      btn.disabled = true;
-      btn.classList.add("hide");
-    }
-    function enableLaunchChatButton() {
-      let btn = document.querySelector("#launchChatButton");
-      btn.disabled = false;
-      btn.classList.remove("hide");
-    }
-    function disableSpinner() {
-      let btn = document.querySelector("#spinner");
-      btn.classList.add("hide");
-    }
-    function enableSpinner() {
-      let btn = document.querySelector("#spinner");
-      btn.classList.remove("hide");
-    }
-  </script>
+        <script>
+            function handleBtn() {
+              console.log("Button clicked");
+              disableLaunchChatButton();
+              enableSpinner();
+              embeddedservice_bootstrap.utilAPI
+                .launchChat()
+                .then(() => {
+                  // Success handler used to perform actions
+                  // when the chat client launches successfully.
+                  // For example, create a method that disables the launch chat button.
+                  console.log("then called");
+                  disableSpinner();
+                })
+                .catch(() => {
+                  // Error handler used to perform actions
+                  // if the chat client fails to launch.
+                  // For example, create a method that hides the launch chat button.
+                  // hideLaunchChatButton();
+                  console.error("Error catch");
+                  enableLaunchChatButton();
+                })
+                .finally(() => {
+                  // Finally handler used to perform any clean-up actions
+                  // regardless of whether the chat client launches successfully or not.
+                  // For example, create a method that logs the user’s attempt to chat.
+                  // logEndUserAttemptToChat();
+                  console.log("Finally");
+                });
+            }
+            function disableLaunchChatButton() {
+              var btn = document.querySelector("#launchChatButton");
+              btn.disabled = true;
+              btn.classList.add("hide");
+            }
+            function enableLaunchChatButton() {
+              var btn = document.querySelector("#launchChatButton");
+              btn.disabled = false;
+              btn.classList.remove("hide");
+            }
+            function disableSpinner() {
+              var btn = document.querySelector("#spinner");
+              btn.classList.add("hide");
+            }
+            function enableSpinner() {
+              var btn = document.querySelector("#spinner");
+              btn.classList.remove("hide");
+            }
+          </script>
 
     </div>
 </body>
