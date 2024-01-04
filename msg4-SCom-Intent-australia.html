@@ -1,0 +1,326 @@
+<html>
+
+<head>
+    <title>Specialized Intent Bot</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .style1 {
+            margin: 0 0.5rem;
+            display: inline-block;
+            margin: 0 0.5rem;
+            display: inline-block;
+            background-color: #132043;
+            padding: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: white;
+            font-size: 12px;
+            font-size: small;
+            border-radius: 48px;
+            border-bottom: 3px solid grey;
+        }
+
+        h2 a {
+            color: #776B5D;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+
+        .parent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .child {
+            display: flex;
+        }
+
+        /* Styling required */
+
+        .hide {
+            display: none;
+        }
+
+        .spinner {
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            box-shadow: 20px 0px 0 0 rgba(0, 0, 0, 0.2), 16.2px 11.8px 0 0 rgba(0, 0, 0, 0.4), 6.2px 19px 0 0 rgba(0, 0, 0, 0.6), -6.2px 19px 0 0 rgba(0, 0, 0, 0.8), -16.2px 11.8px 0 0 #000000;
+            animation: spinner-b87k6z 1s infinite linear;
+        }
+
+        @keyframes spinner-b87k6z {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .chatBtn-left {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            position: fixed;
+            bottom: 1.6rem;
+            left: 1.9rem;
+            overflow: hidden;
+            pointer-events: all;
+        }
+
+        .chatBtn-right {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            position: fixed;
+            bottom: 1.6rem;
+            right: 1.9rem;
+            overflow: hidden;
+            pointer-events: all;
+        }
+
+        .spinner-left {
+            position: fixed;
+            left: 6.2rem;
+            bottom: 2.8rem;
+        }
+
+        .spinner-right {
+            position: fixed;
+            right: 6.2rem;
+            bottom: 2.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <h1>Specialized Intent Bot</h1>
+        <!-- Custom Chat Button  -->
+        <button onclick="handleBtn();" class="chatBtn-right hide" disabled id="launchChatButton">
+            <svg width="142" height="50" viewBox="0 0 142 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="141" height="49" rx="8.5" fill="black" />
+                <mask id="mask0_34_3741" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="17" y="13" width="24"
+                    height="24">
+                    <rect x="17" y="13" width="24" height="24" fill="#D9D9D9" />
+                </mask>
+                <g mask="url(#mask0_34_3741)">
+                    <path
+                        d="M19 30L19 16C19 15.7167 19.0958 15.4792 19.2875 15.2875C19.4792 15.0958 19.7167 15 20 15L33 15C33.2833 15 33.5208 15.0958 33.7125 15.2875C33.9042 15.4792 34 15.7167 34 16L34 25C34 25.2833 33.9042 25.5208 33.7125 25.7125C33.5208 25.9042 33.2833 26 33 26L23 26L19 30ZM24 31C23.7167 31 23.4792 30.9042 23.2875 30.7125C23.0958 30.5208 23 30.2833 23 30L23 28L36 28L36 19L38 19C38.2833 19 38.5208 19.0958 38.7125 19.2875C38.9042 19.4792 39 19.7167 39 20L39 35L35 31L24 31ZM32 17L21 17L21 25.175L22.175 24L32 24L32 17Z"
+                        fill="white" />
+                </g>
+                <path
+                    d="M58.1731 25H50.7811V13.608H53.0051V23.016H58.1731V25ZM61.9043 25H59.8243V16.904H61.9043V25ZM61.9203 15.24H59.7923V13.544H61.9203V15.24ZM70.8865 16.664L67.8305 25H66.1985L63.1265 16.664H65.3185L67.0145 21.816L68.6945 16.664H70.8865ZM78.8129 21.48H73.5969C73.5969 22.568 74.2369 23.336 75.4209 23.336C76.3329 23.336 76.7809 23.064 77.3089 22.552L78.5729 23.784C77.7249 24.648 76.9089 25.096 75.4049 25.096C73.4369 25.096 71.5489 24.2 71.5489 20.824C71.5489 18.104 73.0209 16.568 75.1809 16.568C77.5009 16.568 78.8129 18.232 78.8129 20.6V21.48ZM76.7649 20.056C76.7489 19.688 76.7169 19.464 76.5729 19.16C76.3489 18.664 75.8849 18.296 75.1809 18.296C74.4769 18.296 74.0129 18.664 73.7889 19.16C73.6449 19.464 73.6129 19.688 73.5969 20.056H76.7649ZM92.6093 21.496C92.1933 23.88 90.5453 25.096 88.4333 25.096C87.1213 25.096 86.1613 24.664 85.3773 23.896C84.2413 22.76 84.2253 21.48 84.2253 19.304C84.2253 17.128 84.2413 15.848 85.3773 14.712C86.1613 13.944 87.1213 13.512 88.4333 13.512C90.5613 13.512 92.1933 14.728 92.6093 17.112H90.3373C90.1133 16.184 89.5373 15.496 88.4333 15.496C87.8253 15.496 87.3293 15.72 87.0093 16.088C86.5933 16.568 86.4493 17.128 86.4493 19.304C86.4493 21.48 86.5933 22.04 87.0093 22.52C87.3293 22.888 87.8253 23.112 88.4333 23.112C89.5373 23.112 90.1293 22.424 90.3533 21.496H92.6093ZM101.299 25H99.2191V19.96C99.2191 18.824 98.4991 18.44 97.8431 18.44C97.1871 18.44 96.4511 18.824 96.4511 19.96V25H94.3711V13.608H96.4511V17.432C96.9791 16.856 97.6831 16.568 98.4831 16.568C99.3151 16.568 99.9871 16.84 100.451 17.304C101.123 17.976 101.299 18.76 101.299 19.672V25ZM109.847 25H107.815V24.28C107.255 24.84 106.727 25.08 105.767 25.08C104.823 25.08 104.119 24.824 103.639 24.344C103.191 23.88 102.951 23.208 102.951 22.472C102.951 21.144 103.863 20.056 105.831 20.056H107.767V19.64C107.767 18.728 107.319 18.328 106.215 18.328C105.463 18.328 105.063 18.536 104.615 19.048L103.303 17.752C104.119 16.856 104.903 16.568 106.295 16.568C108.647 16.568 109.847 17.56 109.847 19.512V25ZM107.767 21.928V21.48H106.183C105.351 21.48 104.951 21.816 104.951 22.44C104.951 23.016 105.351 23.384 106.215 23.384C106.727 23.384 107.095 23.32 107.447 22.984C107.687 22.776 107.767 22.456 107.767 21.928ZM115.834 25H114.698C113.002 25 112.282 23.8 112.282 22.616V18.488H111.402V16.904H112.282V14.44H114.362V16.904H115.834V18.488H114.362V22.488C114.362 22.968 114.586 23.24 115.082 23.24H115.834V25Z"
+                    fill="white" />
+                <circle cx="53" cy="35" r="4" fill="#52C41A" />
+                <path
+                    d="M68.1211 35.44C68.1211 36.93 68.1011 37.64 67.4011 38.34C66.9411 38.8 66.3411 39.06 65.5611 39.06C64.7811 39.06 64.1811 38.8 63.7211 38.34C63.0211 37.64 63.0011 36.93 63.0011 35.44C63.0011 33.95 63.0211 33.24 63.7211 32.54C64.1811 32.08 64.7811 31.82 65.5611 31.82C66.3411 31.82 66.9411 32.08 67.4011 32.54C68.1011 33.24 68.1211 33.95 68.1211 35.44ZM67.0411 35.44C67.0411 34.03 66.9811 33.59 66.6211 33.22C66.3511 32.94 65.9911 32.78 65.5611 32.78C65.1311 32.78 64.7711 32.94 64.5011 33.22C64.1511 33.6 64.0811 34.03 64.0811 35.44C64.0811 36.85 64.1511 37.27 64.5011 37.65C64.7711 37.93 65.1311 38.1 65.5611 38.1C65.9911 38.1 66.3511 37.93 66.6211 37.65C66.9811 37.28 67.0411 36.85 67.0411 35.44ZM73.7159 39H72.6959V35.91C72.6959 35.12 72.2459 34.78 71.6759 34.78C71.1059 34.78 70.6259 35.13 70.6259 35.91V39H69.6059V33.93H70.6059V34.44C70.9559 34.06 71.4459 33.87 71.9559 33.87C72.4759 33.87 72.9059 34.04 73.2059 34.33C73.5959 34.71 73.7159 35.19 73.7159 35.76V39ZM77.2795 39H76.6495C75.6795 39 75.2595 38.35 75.2595 37.6V31.88H76.2795V37.54C76.2795 37.93 76.4195 38.13 76.8295 38.13H77.2795V39ZM79.415 39H78.395V33.93H79.415V39ZM79.445 32.93H78.365V31.85H79.445V32.93ZM85.1417 39H84.1217V35.91C84.1217 35.12 83.6717 34.78 83.1017 34.78C82.5317 34.78 82.0517 35.13 82.0517 35.91V39H81.0317V33.93H82.0317V34.44C82.3817 34.06 82.8717 33.87 83.3817 33.87C83.9017 33.87 84.3317 34.04 84.6317 34.33C85.0217 34.71 85.1417 35.19 85.1417 35.76V39ZM90.7553 36.76H87.4653C87.4653 37.64 87.9153 38.18 88.7553 38.18C89.3253 38.18 89.6253 38.02 89.9853 37.66L90.6353 38.27C90.1153 38.79 89.6253 39.06 88.7353 39.06C87.4653 39.06 86.4553 38.39 86.4553 36.46C86.4553 34.81 87.3053 33.87 88.6053 33.87C89.9653 33.87 90.7553 34.85 90.7553 36.33V36.76ZM89.7453 36.05C89.7253 35.74 89.7053 35.58 89.6053 35.36C89.4353 34.98 89.0853 34.72 88.6053 34.72C88.1153 34.72 87.7653 34.98 87.5953 35.36C87.4953 35.58 87.4753 35.74 87.4653 36.05H89.7453ZM99.9882 39H98.9982L95.7082 33.99V39H94.6282V31.88H95.6182L98.9082 36.88V31.88H99.9882V39ZM105.715 36.46C105.715 37.32 105.595 37.96 105.115 38.46C104.785 38.8 104.285 39.06 103.595 39.06C102.905 39.06 102.415 38.8 102.085 38.46C101.605 37.96 101.485 37.32 101.485 36.46C101.485 35.61 101.605 34.97 102.085 34.47C102.415 34.13 102.905 33.87 103.595 33.87C104.285 33.87 104.785 34.13 105.115 34.47C105.595 34.97 105.715 35.61 105.715 36.46ZM104.695 36.46C104.695 35.91 104.655 35.38 104.345 35.07C104.155 34.88 103.895 34.78 103.595 34.78C103.295 34.78 103.045 34.88 102.855 35.07C102.545 35.38 102.505 35.91 102.505 36.46C102.505 37.01 102.545 37.54 102.855 37.85C103.045 38.04 103.295 38.15 103.595 38.15C103.895 38.15 104.155 38.04 104.345 37.85C104.655 37.54 104.695 37.01 104.695 36.46ZM113.587 33.93L112.007 39H111.137L109.947 35.46L108.767 39H107.887L106.317 33.93H107.397L108.377 37.5L109.557 33.93H110.347L111.517 37.5L112.497 33.93H113.587Z"
+                    fill="white" />
+                <rect x="0.5" y="0.5" width="141" height="49" rx="8.5" stroke="white" />
+            </svg>
+        </button>
+        <!-- Custom Chat Button  -->
+        <!-- Spinner -->
+        <div class="spinner spinner-right hide" id="spinner"></div>
+        <!-- Spinner -->
+        <script type="text/javascript">
+
+            let botHomeURL = "https://specialized--msg4.sandbox.my.site.com/";   // experience site domain
+            let botBootStartPath = "/assets/js/bootstrap.min.js";
+            let botScrtURL = "https://specialized--msg4.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            let sfOrgId = "00D3I0000001MD8";    // salesforce instance id
+            var globalBotObj;
+
+            let botObj = {
+                "en_US": {                                                      // this key is language code
+                    esdAPIName: "SB_SF_S_Com_Intent_English_US",
+                    esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+                },
+                "en_CA": {                                                      // this key is language code
+                    esdAPIName: "SB_SF_S_Com_Intent_English_US",
+                    esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+                },
+                "en_AU": {                                                      // this key is language code
+                    esdAPIName: "SB_SF_S_Com_Intent_English_US",
+                    esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+                },
+                "en_GB": {
+                    esdAPIName: "SB_SF_S_Com_Intent_English_UK",
+                    esdSiteAPIName: "ESWSBSFSComIntentEng1700657397089"
+                }
+            }
+
+            var webLanguageCode = {
+                "en-US" : "en_US",
+                "en-GB" : "en_GB",
+                "en-AU" : "en_AU",
+                "es-ES" : "es",
+                "pt-PT" : "pt_PT",
+                "it-IT" : "it",
+                "de-DE" : "de",
+                "nl-NL" : "nl_NL",
+                "fr-FR" : "fr",
+                "en-CA" : "en_CA",
+                "en-AU" : "en_AU"
+              }
+
+            function callBot(webTeamObj) {
+
+                console.log('lang ',webLanguageCode[webTeamObj.languageCode]);
+
+                webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
+
+                let thisBot = botObj[webTeamObj.languageCode];
+                console.log('callbot thisBot ',thisBot,botHomeURL + thisBot.esdSiteAPIName + botBootStartPath)
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.onload = (event) => {
+                    initEmbeddedMessaging(webTeamObj, thisBot);
+                }
+                script.src = botHomeURL + thisBot.esdSiteAPIName + botBootStartPath;
+                document.body.appendChild(script);
+
+            }
+
+            function initEmbeddedMessaging(webTeamObj, thisBot) {
+                try {
+
+                    globalBotObj = {...webTeamObj}
+
+                    embeddedservice_bootstrap.settings.language = globalBotObj.languageCode; // For example, enter 'en' or 'en_US'
+
+                    window.addEventListener("onEmbeddedMessagingReady", () => {
+
+                        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                            "SB_SF_Country_Code": globalBotObj.countryCode,
+                            "SB_SF_Language_Code": globalBotObj.languageCode,
+                            "SB_SF_Customer_Number" : globalBotObj.userId,
+                            "SB_SF_User_Name" : globalBotObj.userName,
+                            "SB_SF_Webpage_URL" : globalBotObj.pageURL
+                        });
+
+                        let btnState =
+                            document.querySelector("#launchChatButton").disabled;
+                        if (btnState) {
+                            //Open
+                            window.setTimeout(() => {
+                                //Timeout added to check the state of existing messaging session.
+                                let chatWindow = document.querySelector(
+                                    '[title="Chat with an Agent"]'
+                                );
+                                console.log({ chatWindow });
+                                if (!chatWindow) {
+                                    // Chat window is not maximized
+                                    enableLaunchChatButton();
+                                }
+                                disableSpinner();
+                            }, 1000);
+                        }
+
+                    });
+
+                    embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
+
+                    embeddedservice_bootstrap.init(
+                        sfOrgId,
+                        thisBot.esdAPIName,
+                        botHomeURL + thisBot.esdSiteAPIName,
+                        {
+                            scrt2URL: botScrtURL
+                        }
+                    );
+                } catch (err) {
+                    console.error("Error loading Embedded Messaging: ", err);
+                }
+            }
+
+            window.onload = (event) => {
+                console.log("page is fully loaded");
+                let webTeamObj = {
+                    languageCode: "en-AU",
+                    countryCode: "AU",
+                    pageURL: window.location.href
+                }
+                console.log('onload ', webTeamObj);
+                callBot(webTeamObj);                   // this function to be called by webteam
+            };
+
+        </script>
+
+        <script>
+            function handleBtn() {
+                console.log("Button clicked");
+                disableLaunchChatButton();
+                enableSpinner();
+                embeddedservice_bootstrap.utilAPI
+                    .launchChat()
+                    .then(() => {
+                        // Success handler used to perform actions
+                        // when the chat client launches successfully.
+                        // For example, create a method that disables the launch chat button.
+                        console.log('at then ', embeddedservice_bootstrap);
+                        disableSpinner();
+                    })
+                    .catch(() => {
+                        // Error handler used to perform actions
+                        // if the chat client fails to launch.
+                        // For example, create a method that hides the launch chat button.
+                        // hideLaunchChatButton();
+                        console.error("Error catch");
+                        enableLaunchChatButton();
+                    })
+                    .finally(() => {
+                        // Finally handler used to perform any clean-up actions
+                        // regardless of whether the chat client launches successfully or not.
+                        // For example, create a method that logs the user’s attempt to chat.
+                        // logEndUserAttemptToChat();
+                        console.log("Finally");
+                    });
+            }
+            function disableLaunchChatButton() {
+                let btn = document.querySelector("#launchChatButton");
+                btn.disabled = true;
+                btn.classList.add("hide");
+            }
+            function enableLaunchChatButton() {
+                let btn = document.querySelector("#launchChatButton");
+                btn.disabled = false;
+                btn.classList.remove("hide");
+            }
+            function disableSpinner() {
+                let btn = document.querySelector("#spinner");
+                btn.classList.add("hide");
+            }
+            function enableSpinner() {
+                let btn = document.querySelector("#spinner");
+                btn.classList.remove("hide");
+            }
+        </script>
+    </div>
+</body>
+
+</html>
