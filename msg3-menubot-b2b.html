@@ -56,59 +56,11 @@
 
         .child {
             display: flex;
-        }  /* Styling required */
+        }
+
+          /* Styling required */
 
       .hide {
-        display: none;
-      }
-
-      .spinner {
-        width: 8px;
-        height: 8px;
-        border-radius: 8px;
-        box-shadow: 20px 0px 0 0 rgba(0, 0, 0, 0.2), 16.2px 11.8px 0 0 rgba(0, 0, 0, 0.4), 6.2px 19px 0 0 rgba(0, 0, 0, 0.6), -6.2px 19px 0 0 rgba(0, 0, 0, 0.8), -16.2px 11.8px 0 0 #000000;
-        animation: spinner-b87k6z 1s infinite linear;
-      }
-
-      @keyframes spinner-b87k6z {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .chatBtn-left {
-        border: 0;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        position: fixed;
-        bottom: 1.6rem;
-        left: 1.9rem;
-        overflow: hidden;
-        pointer-events: all;
-      }
-
-      .chatBtn-right {
-        border: 0;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        position: fixed;
-        bottom: 1.6rem;
-        right: 1.9rem;
-        overflow: hidden;
-        pointer-events: all;
-      }
-      .spinner-left {
-        position: fixed;left: 6.2rem;bottom: 2.8rem;
-      }
-      .spinner-right {
-        position: fixed;right: 6.2rem;bottom: 2.8rem;
-      }
-
-        /* Styling required */
-
-        .hide {
         display: none;
       }
 
@@ -221,20 +173,19 @@
     <!-- Spinner -->
         <script type="text/javascript">
 
-            let botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
-            let botBootStartPath = "/assets/js/bootstrap.min.js";
-            let botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
-            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
-            var globalBotObj;
-
-            let botObj = {
+            var botHomeURL = "https://specialized--msg3.sandbox.my.site.com/";   // experience site domain
+            var botBootStartPath = "/assets/js/bootstrap.min.js";
+            var botScrtURL = "https://specialized--msg3.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
+            var sfOrgId = "00D3I0000000o1r";    // salesforce instance id
+            
+            var botObj = {
                 "en_US": {                                                      // this key is language code
                     esdAPIName: "Menu_bot_b2b_US",
                     esdSiteAPIName: "ESWMenubotb2bUS1704711286979"
                 }
             }
 
-            let webLanguageCode = {
+            var webLanguageCode = {
               "en-US" : "en_US",
               "en-GB" : "en_GB",
               "en-AU" : "en_AU",
@@ -243,9 +194,7 @@
               "it-IT" : "it",
               "de-DE" : "de",
               "nl-NL" : "nl_NL",
-              "fr-FR" : "fr",
-              "en-CA" : "en_CA",
-              "en-AU" : "en_AU"
+              "fr-FR" : "fr"
             }
 
             function callBot(webTeamObj) {
@@ -254,7 +203,7 @@
 
                 webTeamObj.languageCode = webLanguageCode[webTeamObj.languageCode] ? webLanguageCode[webTeamObj.languageCode] : "en_US";
 
-                let thisBot = botObj[webTeamObj.languageCode];
+                var thisBot = botObj[webTeamObj.languageCode];
 
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -271,19 +220,21 @@
                 console.log('initEmbeddedMessaging ', webTeamObj);
 
                 try {
-                    globalBotObj = {...webTeamObj}
-                    embeddedservice_bootstrap.settings.language = globalBotObj.languageCode; // For example, enter 'en' or 'en_US'
-                    window.addEventListener("onEmbeddedMessagingReady", () => {
+
+                    embeddedservice_bootstrap.settings.language = webTeamObj.languageCode; // For example, enter 'en' or 'en_US'
+                    window.addEventListener("onEmbeddedMessagingReady", function(){
 
 
+
+                        
                         console.log("Received the onEmbeddedMessagingReady event…");
-                        let btnState =
+                        var btnState =
                             document.querySelector("#launchChatButton").disabled;
                         if (btnState) {
                             //Open
-                            window.setTimeout(() => {
+                            window.setTimeout(function() {
                             //Timeout added to check the state of existing messaging session.
-                            let chatWindow = document.querySelector(
+                            var chatWindow = document.querySelector(
                                 '[title="Chat with an Agent"]'
                             );
                             console.log({ chatWindow });
@@ -297,18 +248,17 @@
 
                         
                         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                            "SB_SF_Country_Code": globalBotObj.countryCode,
-                            "SB_SF_Language_Code": globalBotObj.languageCode,
-                            "SB_SF_Customer_Number" : globalBotObj.userId,
-                            "SB_SF_User_Name" : globalBotObj.userName,
-                            "SB_SF_Webpage_URL" : globalBotObj.pageURL
+                            "SB_SF_Country_Code": webTeamObj.countryCode,
+                            "SB_SF_Language_Code": webTeamObj.languageCode,
+                            "SB_SF_Customer_Number" : webTeamObj.userId,
+                            "user_name" : webTeamObj.userName,
+                            "SB_SF_Webpage_URL" : webTeamObj.pageURL
                         });
                     });
 
                     embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; //Hides the chat icon on load
                     // embeddedservice_bootstrap.settings.hideChatButtonOnLoad = false; //Shows the chat icon on load.
 
-                    
                     embeddedservice_bootstrap.init(
                         sfOrgId,
                         thisBot.esdAPIName,
@@ -322,7 +272,7 @@
                 }
             };
 
-            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", () => {
+            window.addEventListener("onEmbeddedMessagingIdentityTokenExpired", function() {
                 
                 console.log("Received the onEmbeddedMessagingIdentityTokenExpired event…");
 
@@ -330,9 +280,9 @@
 
             window.onload = (event) => {
                 console.log("page is fully loaded");
-                let webTeamObj = {
+                var webTeamObj = {
                     languageCode: "en-US",
-                    countryCode: "US",
+                    countryCode: "us",
                     userName: "test@testuser.com",
                     userId: "test123",
                     pageURL : window.location.href
@@ -341,57 +291,55 @@
                 callBot(webTeamObj);                   // this function to be called by webteam
             };
         </script>
-
-<script>
-    function handleBtn() {
-      console.log("Button clicked");
-      disableLaunchChatButton();
-      enableSpinner();
-      embeddedservice_bootstrap.utilAPI
-        .launchChat()
-        .then(() => {
-          // Success handler used to perform actions
-          // when the chat client launches successfully.
-          // For example, create a method that disables the launch chat button.
-          console.log("then called");
-          disableSpinner();
-        })
-        .catch(() => {
-          // Error handler used to perform actions
-          // if the chat client fails to launch.
-          // For example, create a method that hides the launch chat button.
-          // hideLaunchChatButton();
-          console.error("Error catch");
-          enableLaunchChatButton();
-        })
-        .finally(() => {
-          // Finally handler used to perform any clean-up actions
-          // regardless of whether the chat client launches successfully or not.
-          // For example, create a method that logs the user’s attempt to chat.
-          // logEndUserAttemptToChat();
-          console.log("Finally");
-        });
-    }
-    function disableLaunchChatButton() {
-      let btn = document.querySelector("#launchChatButton");
-      btn.disabled = true;
-      btn.classList.add("hide");
-    }
-    function enableLaunchChatButton() {
-      let btn = document.querySelector("#launchChatButton");
-      btn.disabled = false;
-      btn.classList.remove("hide");
-    }
-    function disableSpinner() {
-      let btn = document.querySelector("#spinner");
-      btn.classList.add("hide");
-    }
-    function enableSpinner() {
-      let btn = document.querySelector("#spinner");
-      btn.classList.remove("hide");
-    }
-  </script>
-
+        <script>
+            function handleBtn() {
+              console.log("Button clicked");
+              disableLaunchChatButton();
+              enableSpinner();
+              embeddedservice_bootstrap.utilAPI
+                .launchChat()
+                .then(() => {
+                  // Success handler used to perform actions
+                  // when the chat client launches successfully.
+                  // For example, create a method that disables the launch chat button.
+                  console.log("then called");
+                  disableSpinner();
+                })
+                .catch(() => {
+                  // Error handler used to perform actions
+                  // if the chat client fails to launch.
+                  // For example, create a method that hides the launch chat button.
+                  // hideLaunchChatButton();
+                  console.error("Error catch");
+                  enableLaunchChatButton();
+                })
+                .finally(() => {
+                  // Finally handler used to perform any clean-up actions
+                  // regardless of whether the chat client launches successfully or not.
+                  // For example, create a method that logs the user’s attempt to chat.
+                  // logEndUserAttemptToChat();
+                  console.log("Finally");
+                });
+            }
+            function disableLaunchChatButton() {
+              var btn = document.querySelector("#launchChatButton");
+              btn.disabled = true;
+              btn.classList.add("hide");
+            }
+            function enableLaunchChatButton() {
+              var btn = document.querySelector("#launchChatButton");
+              btn.disabled = false;
+              btn.classList.remove("hide");
+            }
+            function disableSpinner() {
+              var btn = document.querySelector("#spinner");
+              btn.classList.add("hide");
+            }
+            function enableSpinner() {
+              var btn = document.querySelector("#spinner");
+              btn.classList.remove("hide");
+            }
+          </script>
 
     </div>
 </body>
