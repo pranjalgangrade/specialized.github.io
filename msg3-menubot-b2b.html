@@ -69,13 +69,13 @@
             let botHomeURL = "https://specialized--msg2.sandbox.my.site.com/";   // experience site domain
             let botBootStartPath = "/assets/js/bootstrap.min.js";
             let botScrtURL = "https://specialized--msg2.sandbox.my.salesforce-scrt.com";  // scrt url from embeded code
-            let sfOrgId = "00D3I0000000jPN";    // salesforce instance id
+            let sfOrgId = "00D3I0000000o1r";    // salesforce instance id
             var globalBotObj;
 
             let botObj = {
                 "en_US": {                                                      // this key is language code
-                    esdAPIName: "SB_SF_Menu_Bot_B2B_US_Github",
-                    esdSiteAPIName: "ESWSBSFMenuBotB2BUS1699955596962"
+                    esdAPIName: "Menu_bot_b2b_US",
+                    esdSiteAPIName: "ESWMenubotb2bUS1704711286979"
                 },
                 "de": {
                     esdAPIName: "SB_SF_Menu_Bot_B2B_German",
@@ -137,8 +137,8 @@
             window.onload = (event) => {
                 console.log("page is fully loaded");
                 let webTeamObj = {
-                    languageCode: "de",
-                    countryCode: "de",
+                    languageCode: "en_US",
+                    countryCode: "us",
                     userName: "test@testuser.com",
                     userId: "test123",
                     pageURL : window.location.href
