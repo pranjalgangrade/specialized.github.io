@@ -1,14 +1,14 @@
 <html>
 
 <head>
-  <title> Scom Specialized Skill Bot (Portuguese) </title>
+  <title> Scom Generic Input Bot </title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
   <style>
     * {
-      font-family: 'Roboto', sans-serif;
+      font - family: 'Roboto', sans-serif;
     }
 
     .style1 {
@@ -32,19 +32,19 @@
     }
 
     a:link {
-      text-decoration: none;
+      text - decoration: none;
     }
 
     a:visited {
-      text-decoration: none;
+      text - decoration: none;
     }
 
     a:hover {
-      text-decoration: none;
+      text - decoration: none;
     }
 
     a:active {
-      text-decoration: none;
+      text - decoration: none;
     }
 
     .parent {
@@ -197,9 +197,44 @@
       //Portgueuse (Europeone)
       esdAPIName: "SB_SF_Scom_Skill_Bot",
       esdSiteAPIName: "ESWSBSFScomSkillBot1701674228673"
+    },
+    "en_US": {                                                      // this key is language code
+      esdAPIName: "SB_SF_S_Com_Intent_English_US",
+      esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+    },
+    "en_CA": {                                                      // this key is language code
+      esdAPIName: "SB_SF_S_Com_Intent_English_US",
+      esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+    },
+    "en_AU": {                                                      // this key is language code
+      esdAPIName: "SB_SF_S_Com_Intent_English_US",
+      esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+    },
+    "en_GB": {
+      esdAPIName: "SB_SF_S_Com_Intent_English_UK",
+      esdSiteAPIName: "ESWSBSFSComIntentEng1700657397089"
+    },
+    "en_NZ": {                                                      // this key is language code
+      esdAPIName: "SB_SF_S_Com_Intent_English_US",
+      esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
+    },
+    "fr_CA": {
+      esdAPIName: "SB_SF_S_Com_Menu_French",
+      esdSiteAPIName: "ESWSBSFSComMenuFrenc1701248203995"
+    },
+    "es": {
+      esdAPIName: "SB_SF_S_Com_Menu_Spanish",
+      esdSiteAPIName: "ESWSBSFSComMenuSpani1701248818370"
+    },
+    "nl_NL": {
+      esdAPIName: "SB_SF_S_Com_Menu_Dutch",
+      esdSiteAPIName: "ESWSBSFSComMenuDutch1701662111374"
+    }, "it": {
+      esdAPIName: "SB_SF_S_Com_Menu_Italian",
+      esdSiteAPIName: "ESWSBSFSComMenuItali1704456056081"
     }
   }
-  
+
 
   function initEmbeddedMessaging(webTeamObj, thisBot) {
 
@@ -334,20 +369,20 @@
     let btn = document.querySelector("#spinner");
     btn.classList.remove("hide");
   }
-  function handleCountryCode(){
+  function handleCountryCode() {
     countryCode = document.querySelector('#countrycode').value;
     console.log(countryCode)
   }
   function handleSubmit() {
     languageCode = document.querySelector('#language').value;
-    console.log({languageCode})
+    console.log({ languageCode })
     let webTeamObj = {
       languageCode: languageCode,
       countryCode: countryCode,
       pageURL: window.location.href
     }
     console.log('onload ', webTeamObj);
-    callBot(webTeamObj);            
+    callBot(webTeamObj);
   }
 
 </script>
@@ -355,7 +390,7 @@
 <body>
 
   <div class="parent">
-    <h1>Scom Specialized Skill Bot (Portuguese)</h1>
+    <h1>Scom Generic Input Bot</h1>
     <!-- Custom Chat Button  -->
 
     <label for="language">Choose a Language:</label>
@@ -364,7 +399,7 @@
       <script>
         let d = document.querySelector('#language');
         console.log(d)
-        Object.keys(botObj).forEach((key)=>{
+        Object.keys(botObj).forEach((key) => {
           let c = document.createElement('option')
           c.innerHTML = key;
           c.innerText = key;
@@ -376,7 +411,7 @@
     </select><br><br>
     <label for="countrycode">Country Code:</label>
     <input type="text" id="countrycode" name="countrycode" onchange="handleCountryCode();"><br><br>
-    <button onclick="handleSubmit();" >Submit</button>
+    <button onclick="handleSubmit();">Submit</button>
     <button onclick="handleBtn();" class="chatBtn-right hide" disabled id="launchChatButton">
       <img src="https://specialized.a.bigcontent.io/v1/static/LiveChatDefault" alt="Snow" style="width:100%">
     </button>
