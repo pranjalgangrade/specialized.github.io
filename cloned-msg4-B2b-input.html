@@ -403,9 +403,6 @@
 
     <select name="language" id="language">
 
-        <label for="Country">Choose a Country:</label>
-        <select name="Country" id="country"></select>
-
       <script>
         let lstCountry = ['Spanish'];
         let d = document.querySelector('#language');
@@ -417,7 +414,13 @@
           c.value = key
           d.appendChild(c);
         })
+      </script>
+      <!-- <option value="volvo">Volvo</option> -->
+    </select><br><br>
 
+    <label for="Country">Choose a Country:</label>
+    <select name="Country" id="country"></select>
+    <script>
         d = document.querySelector('#country');
         lstCountry.forEach((key) => {
             let c = document.createElement('option')
@@ -426,12 +429,8 @@
             c.value = key
             d.appendChild(c);
           })
-
-      </script>
-      <!-- <option value="volvo">Volvo</option> -->
-    </select><br><br>
-    <label for="countrycode">Country Code:</label>
-    <input type="text" id="countrycode" name="countrycode" onchange="handleCountryCode();"><br><br>
+    </script>
+    
     <button onclick="handleSubmit();">Submit</button>
     <button onclick="handleBtn();" class="chatBtn-right hide" disabled id="launchChatButton">
       <img src="https://specialized.a.bigcontent.io/v1/static/LiveChatDefault" alt="Snow" style="width:100%">
