@@ -400,10 +400,10 @@
     <h1>B2B Generic Input Bot</h1>
     <!-- Custom Chat Button  -->
 
+
+    <!-- Langugae code picklist option -->
     <label for="language">Choose a Language:</label>
-
     <select name="language" id="language">
-
       <script>
         let lstCountry = ['es','gb','fr','de','pt','nl','ca','au','nz','it'];
         let d = document.querySelector('#language');
@@ -416,13 +416,16 @@
           d.appendChild(c);
         })
       </script>
-      <!-- <option value="volvo">Volvo</option> -->
-    </select><br><br>
+    </select>
+    
+    <br><br>
 
+    <!-- Country code picklist option-->
     <label for="Country">Choose a Country:</label>
     <select name="Country" id="country"></select>
     <script>
         d = document.querySelector('#country');
+        console.log('Picked country code ',{d});
         lstCountry.forEach((key) => {
             let c = document.createElement('option')
             c.innerHTML = key;
