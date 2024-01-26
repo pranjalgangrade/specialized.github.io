@@ -382,6 +382,12 @@
     languageCode = document.querySelector('#language').value;
     countryCode = document.querySelector('#country').value;
 
+    let mapSfCode = {
+      "nl" : "nl_NL"
+    }
+
+    languageCode = mapSfCode[languageCode];
+
     console.log({ languageCode })
     let webTeamObj = {
       languageCode: languageCode,
