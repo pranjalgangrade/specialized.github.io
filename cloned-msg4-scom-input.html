@@ -182,15 +182,15 @@
 
   let botObj = {
     
-    "fr": {
+    "FR": {
       esdAPIName: "SB_SF_S_Com_Menu_French",
       esdSiteAPIName: "ESWSBSFSComMenuFrenc1701248203995"
     },
-    "de": {
+    "DE": {
       esdAPIName: "SB_SF_S_COM_MENU_GERMAN",
       esdSiteAPIName: "ESWSBSFSComMenuGerma1700816302817"
     },
-    "pt": {
+    "PT": {
       //Portgueuse (Europeone)
       esdAPIName: "SB_SF_Scom_Skill_Bot",
       esdSiteAPIName: "ESWSBSFScomSkillBot1701674228673"
@@ -199,19 +199,19 @@
       esdAPIName: "SB_SF_S_Com_Intent_English_US",
       esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
     },
-    "ca": {                                                      // this key is language code
+    "CA": {                                                      // this key is language code
       esdAPIName: "SB_SF_S_Com_Intent_English_US",
       esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
     },
-    "au": {                                                      // this key is language code
+    "AU": {                                                      // this key is language code
       esdAPIName: "SB_SF_S_Com_Intent_English_US",
       esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
     },
-    "gb": {
+    "GB": {
       esdAPIName: "SB_SF_S_Com_Intent_English_UK",
       esdSiteAPIName: "ESWSBSFSComIntentEng1700657397089"
     },
-    "nz": {                                                      // this key is language code
+    "NZ": {                                                      // this key is language code
       esdAPIName: "SB_SF_S_Com_Intent_English_US",
       esdSiteAPIName: "ESWSBSFSComIntentEng1700657729586"
     },
@@ -219,15 +219,15 @@
       esdAPIName: "SB_SF_S_Com_Menu_French",
       esdSiteAPIName: "ESWSBSFSComMenuFrenc1701248203995"
     },
-    "es": {
+    "ES": {
       esdAPIName: "SB_SF_S_Com_Menu_Spanish",
       esdSiteAPIName: "ESWSBSFSComMenuSpani1701248818370"
     },
-    "nl": {
+    "NL": {
       esdAPIName: "SB_SF_S_Com_Menu_Dutch",
       esdSiteAPIName: "ESWSBSFSComMenuDutch1701662111374"
     }, 
-    "it": {
+    "IT": {
       esdAPIName: "SB_SF_S_Com_Menu_Italian",
       esdSiteAPIName: "ESWSBSFSComMenuItali1704456056081"
     }
@@ -374,6 +374,22 @@
   function handleSubmit() {
     languageCode = document.querySelector('#language').value;
     countryCode = document.querySelector('#country').value;
+
+    let mapSfCode = {
+      "NL" : "nl_NL",
+      "PT" : "pt_PT",
+      "NZ" : "en_NZ",
+      "AU" : "en_AU",
+      "GB" : "en_GB",
+      "FR" : "fr",
+      "DE" : "de",
+      "IT" : "it",
+      "CA" : "en_CA",
+      "ES" : "es",
+      "en_US" : "en_US"
+    }
+
+    languageCode = mapSfCode[languageCode];
 
     console.log({ languageCode })
     let webTeamObj = {
