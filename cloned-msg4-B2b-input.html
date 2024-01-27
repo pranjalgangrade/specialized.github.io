@@ -181,11 +181,11 @@
   var countryCode, languageCode;
 
   let botObj = {
-    "fr": {
+    "FR": {
       esdAPIName: "SB_SF_B2B_SKILL_FRENCH",
       esdSiteAPIName: "ESWSBSFB2bSkillFrench1700136854474"
     },
-    "de": {
+    "DE": {
       esdAPIName: "SB_SF_B2B_SKILL_GERMAN",
       esdSiteAPIName: "ESWSBSFB2bSkillGerman1700726166020"
     },
@@ -193,31 +193,31 @@
       esdAPIName: "SB_SF_Menu_Bot_B2B_US_Github",
       esdSiteAPIName: "ESWSBSFMenuBotB2BUS1699954595408"
     },
-    "it": {
+    "IT": {
       esdAPIName: "Menu_Bot_B2B_IT",
       esdSiteAPIName: "ESWMenuBotB2BIT1704717570908"
     },
-    "ca": {                                                      // this key is language code
+    "CA": {                                                      // this key is language code
       esdAPIName: "SB_SF_B2b_Skill_English",
       esdSiteAPIName: "ESWSBSFB2bSkillEnglis1702958462872"
     },
-    "au": {                                                      // this key is language code
+    "AU": {                                                      // this key is language code
       esdAPIName: "SB_SF_B2b_Skill_English",
       esdSiteAPIName: "ESWSBSFB2bSkillEnglis1702958462872"
     },
-    "fr": {
+    "FR": {
       esdAPIName: "SB_SF_B2B_SKILL_FRENCH",
       esdSiteAPIName: "ESWSBSFB2bSkillFrench1700136854474"
     },
-    "de": {
+    "DE": {
       esdAPIName: "SB_SF_B2B_SKILL_GERMAN",
       esdSiteAPIName: "ESWSBSFB2bSkillGerman1700726166020"
     },
-    "es": {
+    "ES": {
       esdAPIName: "SB_SF_B2b_Skill_Spanish",
       esdSiteAPIName: "ESWSBSFB2bSkillSpanis1701167421518"
     },
-    "nl": {
+    "NL": {
       esdAPIName: "SB_SF_B2b_Skill_Dutch",
       esdSiteAPIName: "ESWSBSFB2bSkillDutch1701407796436"
     },
@@ -225,16 +225,16 @@
       esdAPIName: "SB_SF_B2B_SKILL_FRENCH",
       esdSiteAPIName: "ESWSBSFB2bSkillFrench1700136854474"
     },
-    "nz": {                                                      // this key is language code
+    "NZ": {                                                      // this key is language code
       esdAPIName: "SB_SF_B2b_Skill_English",
       esdSiteAPIName: "ESWSBSFB2bSkillEnglis1702958462872"
     },
-    "pt": {
+    "PT": {
       //Portgueuse (Europeone)
       esdAPIName: "SB_SF_B2b_Skill_Portuguese",
       esdSiteAPIName: "ESWSBSFB2bSkillPortug1701340297303"
     }, 
-    "gb": {                                                      // this key is language code
+    "GB": {                                                      // this key is language code
       esdAPIName: "SB_SF_B2B_SKILL_ENGLISH",
       esdSiteAPIName: "ESWSBSFB2bSkillEnglis1700136678702"
     },
@@ -414,7 +414,7 @@
     <label for="language">Choose a Language:</label>
     <select name="language" id="language">
       <script>
-        let lstCountry = ['es','gb','fr','de','pt','nl','ca','au','nz','it'];
+        let lstCountry = ['ES','GB','FR','DE','PT','NL','CA','AU','NZ','IT'];
         let d = document.querySelector('#language');
         console.log(d)
         Object.keys(botObj).forEach((key) => {
