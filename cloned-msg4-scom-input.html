@@ -391,7 +391,7 @@
       "fr_CA" : "fr_CA"
     }
 
-    languageCode = mapSfCode[languageCode];
+    languageCode = mapSfCode[languageCode] ? mapSfCode[languageCode] : languageCode;
 
     console.log({ languageCode })
     let webTeamObj = {
@@ -416,7 +416,7 @@
     <select name="language" id="language">
 
       <script>
-        let lstCountry = ['ES','GB','FR','DE','PT','NL','CA','AU','NZ','IT','en_US'];
+        let lstCountry = ['ES','GB','FR','DE','PT','NL','CA','AU','NZ','IT','en_US', 'US'];
         let d = document.querySelector('#language');
         console.log(d)
         Object.keys(botObj).forEach((key) => {
