@@ -394,10 +394,11 @@
       "IT" : "it",
       "CA" : "en_CA",
       "ES" : "es",
-      "en_US" : "en_US"
+      "en_US" : "en_US",
+      "fr_CA" : "fr_CA"
     }
 
-    languageCode = mapSfCode[languageCode];
+    languageCode = mapSfCode[languageCode] ? mapSfCode[languageCode] : languageCode;
 
     console.log({ languageCode })
     let webTeamObj = {
