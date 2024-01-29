@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title> Scom Generic Input Bot </title>
+  <title> B2B Generic Input Bot </title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -391,7 +391,7 @@
       "fr_CA" : "fr_CA"
     }
 
-    languageCode = mapSfCode[languageCode] ? mapSfCode[languageCode] : languageCode;
+    languageCode = mapSfCode[languageCode];
 
     console.log({ languageCode })
     let webTeamObj = {
@@ -408,7 +408,7 @@
 <body>
 
   <div class="parent">
-    <h1>Scom Generic Input Bot</h1>
+    <h1>B2B Generic Input Bot</h1>
     <!-- Custom Chat Button  -->
 
     <label for="language">Choose a Language:</label>
@@ -416,7 +416,7 @@
     <select name="language" id="language">
 
       <script>
-        let lstCountry = ['ES','GB','FR','DE','PT','NL','CA','AU','NZ','IT','en_US', 'US'];
+        let lstCountry = ['ES','GB','FR','DE','PT','NL','CA','AU','NZ','IT','en_US'];
         let d = document.querySelector('#language');
         console.log(d)
         Object.keys(botObj).forEach((key) => {
